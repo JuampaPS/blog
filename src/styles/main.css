@@ -777,3 +777,30 @@ footer {
   color: #174366;
   text-decoration: underline wavy;
 } 
+@media (max-width: 700px) {
+  .ai-tools-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+    font-size: 0.98rem;
+    min-width: 520px;
+  }
+  .ai-tools-section {
+    padding: 1.2rem 0.3rem;
+  }
+  .ai-tools-table th, .ai-tools-table td {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.98rem;
+  }
+  .ai-tools-section h1 {
+    font-size: 1.3rem;
+  }
+  .ai-tools-section h2 {
+    font-size: 1.1rem;
+  }
+  .ai-tools-links {
+    font-size: 0.98rem;
+  }
+} 
