@@ -420,6 +420,14 @@ footer {
   }
 }
 @media (max-width: 600px) {
+  .header-title {
+    font-size: 2.1rem;
+    text-align: center;
+    line-height: 1.1;
+    white-space: pre-line;
+  }
+}
+@media (max-width: 600px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
