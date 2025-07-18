@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | AI News to My.se students</title>
+  <link rel="icon" type="image/png" href="blog/public/favicon.png">
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <span class="search-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="7" stroke="#222" stroke-width="2"/>
+            <line x1="16.4142" y1="16" x2="21" y2="20.5858" stroke="#222" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="header-date" id="header-date"></span>
+      </div>
+      <div class="header-title">AI News to My.se students</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="news.html">News</a>
+        <a href="gallery.html">Gallery</a>
+      </nav>
+      <div class="header-actions">
+        <button class="subscribe-btn">Subscribe</button>
+        <button class="login-btn">Log in</button>
+      </div>
+    </div>
+  </header>
+  <hr class="header-separator">
+  <main>
+    <section style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+      <h1 style="font-family: 'Cinzel', serif; font-size: 2rem; color: #222;">News page coming soon...</h1>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 AI News for My.se Students</p>
+    <p class="footer-bio">JP Palacio Soler is a creative developer and AI enthusiast passionate about building modern, user-friendly web experiences. He enjoys blending technology, design, and education to empower others.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jppalaciosoler" target="_blank" class="footer-icon" aria-label="LinkedIn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="4" fill="#0077B5"/>
+          <path d="M7.5 9.5V17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="7.5" cy="7" r="1.25" fill="#fff"/>
+          <path d="M11.5 13V17M11.5 13V11.5C11.5 10.3954 12.3954 9.5 13.5 9.5C14.6046 9.5 15.5 10.3954 15.5 11.5V17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="https://jppalaciosoler.com" target="_blank" class="footer-icon" aria-label="Portfolio">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="4" fill="#222"/>
+          <path d="M7 17V7H17V17H7Z" stroke="#fff" stroke-width="1.5"/>
+          <path d="M9 9H15V15H9V9Z" fill="#fff"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+  <script>
+    // Fecha dinámica en formato: Thursday July 17, 2025
+    const dateEl = document.getElementById('header-date');
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateEl.textContent = now.toLocaleDateString('en-US', options);
+  </script>
+</body>
+</html> 

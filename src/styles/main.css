@@ -692,3 +692,35 @@ footer {
   margin: 1.5rem auto;
   display: block;
 } 
+.gallery-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.07);
+}
+.gallery-upload-btn {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #222;
+  background: #fafafa;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gallery-upload-btn:hover {
+  background: #f0f0f0;
+}
+#dynamic-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+#dynamic-gallery img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+} 

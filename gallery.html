@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | AI News to My.se students</title>
+  <link rel="icon" type="image/png" href="blog/public/favicon.png">
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <span class="search-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="7" stroke="#222" stroke-width="2"/>
+            <line x1="16.4142" y1="16" x2="21" y2="20.5858" stroke="#222" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="header-date" id="header-date"></span>
+      </div>
+      <div class="header-title">AI News to My.se students</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="news.html">News</a>
+        <a href="gallery.html">Gallery</a>
+      </nav>
+      <div class="header-actions">
+        <button class="subscribe-btn">Subscribe</button>
+        <button class="login-btn">Log in</button>
+      </div>
+    </div>
+  </header>
+  <hr class="header-separator">
+  <main>
+    <section class="gallery-section">
+      <h2 class="gallery-title">Gallery</h2>
+      <input type="file" id="gallery-upload" accept="image/*" multiple style="display:none;">
+      <button onclick="document.getElementById('gallery-upload').click()" class="gallery-upload-btn">Upload your Art</button>
+      <div class="gallery-grid" id="dynamic-gallery">
+        <!-- Las imágenes de Supabase aparecerán aquí -->
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 AI News for My.se Students</p>
+    <p class="footer-bio">JP Palacio Soler is a creative developer and AI enthusiast passionate about building modern, user-friendly web experiences. He enjoys blending technology, design, and education to empower others.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jppalaciosoler" target="_blank" class="footer-icon" aria-label="LinkedIn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="4" fill="#0077B5"/>
+          <path d="M7.5 9.5V17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="7.5" cy="7" r="1.25" fill="#fff"/>
+          <path d="M11.5 13V17M11.5 13V11.5C11.5 10.3954 12.3954 9.5 13.5 9.5C14.6046 9.5 15.5 10.3954 15.5 11.5V17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="https://jppalaciosoler.com" target="_blank" class="footer-icon" aria-label="Portfolio">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="4" fill="#222"/>
+          <path d="M7 17V7H17V17H7Z" stroke="#fff" stroke-width="1.5"/>
+          <path d="M9 9H15V15H9V9Z" fill="#fff"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+  <script>
+    // Fecha dinámica en formato: Thursday July 17, 2025
+    const dateEl = document.getElementById('header-date');
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateEl.textContent = now.toLocaleDateString('en-US', options);
+
+    // Supabase config
+    const SUPABASE_URL = 'https://ecrvpzlxargnrywftrwe.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcnZwemx4YXJnbnJ5d2Z0cndlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0OTM2MTcsImV4cCI6MjA2ODA2OTYxN30.ZZkvLlGTqGFVPjPUErk7wgDV7Eo7SObA1roSPRFBOaY';
+    const BUCKET = 'gallery-ai';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Mostrar imágenes existentes
+    async function loadGallery() {
+      const { data, error } = await supabase.storage.from(BUCKET).list('', { limit: 100 });
+      console.log('Supabase data:', data, 'error:', error);
+      const gallery = document.getElementById('dynamic-gallery');
+      gallery.innerHTML = '';
+      if (data && data.length > 0) {
+        data.forEach(file => {
+          // Solo mostrar archivos (no carpetas)
+          if (file.name && !file.metadata?.mimetype?.includes('folder')) {
+            // Obtén la URL pública correctamente
+            const urlObj = supabase.storage.from(BUCKET).getPublicUrl(file.name);
+            const publicUrl = urlObj && urlObj.data && urlObj.data.publicUrl ? urlObj.data.publicUrl : urlObj.publicUrl;
+            if (publicUrl && publicUrl !== "undefined") {
+              const img = document.createElement('img');
+              img.src = publicUrl;
+              img.alt = file.name;
+              gallery.appendChild(img);
+            }
+          }
+        });
+        if (gallery.innerHTML === '') {
+          gallery.innerHTML = '<p style="color:#888;">No images yet. Add images to your Supabase bucket!</p>';
+        }
+      } else {
+        gallery.innerHTML = '<p style="color:#888;">No images yet. Add images to your Supabase bucket!</p>';
+      }
+    }
+    loadGallery();
+
+    // Subir imágenes
+    document.getElementById('gallery-upload').addEventListener('change', async function(event) {
+      const files = Array.from(event.target.files);
+      for (const file of files) {
+        const filePath = `${Date.now()}_${file.name}`;
+        const { error } = await supabase.storage.from(BUCKET).upload(filePath, file);
+        if (!error) {
+          // Mostrar la nueva imagen
+          const { publicUrl } = supabase.storage.from(BUCKET).getPublicUrl(filePath);
+          const img = document.createElement('img');
+          img.src = publicUrl;
+          img.alt = file.name;
+          document.getElementById('dynamic-gallery').appendChild(img);
+        }
+      }
+      // Recargar la galería después de subir
+      loadGallery();
+    });
+  </script>
+</body>
+</html> 
