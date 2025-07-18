@@ -406,25 +406,21 @@ footer {
 @media (max-width: 900px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 120px);
     gap: 1rem;
   }
-  
   .gallery-item {
     aspect-ratio: 1/1;
-    min-height: 120px;
+    width: 100%;
   }
 }
 @media (max-width: 600px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 100px);
     gap: 0.8rem;
   }
-  
   .gallery-item {
     aspect-ratio: 1/1;
-    min-height: 100px;
+    width: 100%;
   }
   
   .header-container {
@@ -568,13 +564,12 @@ footer {
   
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 80px);
     gap: 0.5rem;
   }
   
   .gallery-item {
     aspect-ratio: 1/1;
-    min-height: 80px;
+    width: 100%;
   }
   
   .gap-divider {
