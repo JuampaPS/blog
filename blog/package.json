@@ -1,0 +1,11 @@
+{
+  "name": "nyt-blog",
+  "version": "1.0.0",
+  "description": "Blog inspirado en la estética de The New York Times",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
