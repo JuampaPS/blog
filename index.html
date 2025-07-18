@@ -43,7 +43,7 @@
         <a href="index.html">Home</a>
         <a href="news.html">News</a>
         <a href="gallery.html">Gallery</a>
-        <a href="#ai-tools" id="ai-tools-link">AI Tools</a>
+        <a href="ai-tools.html">AI Tools</a>
       </nav>
       <div class="header-actions">
         <button class="subscribe-btn">Subscribe</button>
@@ -146,11 +146,6 @@
     </section>
     <section class="sections">
     </section>
-    <!-- Nueva sección AI Tools -->
-    <section id="ai-tools" class="ai-tools-section">
-      <h2>AI Tools</h2>
-      <p>Descubre y explora herramientas de inteligencia artificial útiles para estudiantes y creadores. (Próximamente más contenido)</p>
-    </section>
   </main>
   <footer>
     <p>© 2025 AI News for My.se Students</p>
@@ -179,6 +174,30 @@
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateEl.textContent = now.toLocaleDateString('en-US', options);
+
+    // Scroll suave a AI Tools
+    document.getElementById('ai-tools-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('ai-tools').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Recarga automática de la sección AI Tools (placeholder para futuro fetch)
+    setInterval(() => {
+      const aiToolsSection = document.getElementById('ai-tools');
+      // Aquí podrías hacer un fetch a una API o actualizar el contenido dinámicamente
+      // Por ahora solo refresca la hora de actualización
+      let updateTime = aiToolsSection.querySelector('.ai-tools-update-time');
+      if (!updateTime) {
+        updateTime = document.createElement('div');
+        updateTime.className = 'ai-tools-update-time';
+        updateTime.style.fontSize = '0.95rem';
+        updateTime.style.color = '#888';
+        updateTime.style.marginTop = '0.5rem';
+        aiToolsSection.appendChild(updateTime);
+      }
+      const now = new Date();
+      updateTime.textContent = 'Última actualización: ' + now.toLocaleTimeString();
+    }, 30000);
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
   <script>
