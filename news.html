@@ -36,8 +36,9 @@
   </header>
   <hr class="header-separator">
   <main>
-    <section style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
-      <h1 style="font-family: 'Cinzel', serif; font-size: 2rem; color: #222;">News page coming soon...</h1>
+    <section class="newsletter-section">
+      <h1 class="newsletter-main-title">Latest News</h1>
+      <div id="newsletter-list"></div>
     </section>
   </main>
   <footer>
@@ -67,6 +68,52 @@
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateEl.textContent = now.toLocaleDateString('en-US', options);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
+  <script>
+  const SUPABASE_URL = 'https://ecrvpzlxargnrywftrwe.supabase.co'; // tu URL
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcnZwemx4YXJnbnJ5d2Z0cndlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0OTM2MTcsImV4cCI6MjA2ODA2OTYxN30.ZZkvLlGTqGFVPjPUErk7wgDV7Eo7SObA1roSPRFBOaY'; // tu anon key
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  async function loadNews() {
+    const { data, error } = await supabase
+      .from('news')
+      .select('*')
+      .order('date', { ascending: false });
+
+    const newsContainer = document.getElementById('newsletter-list');
+    newsContainer.innerHTML = '';
+
+    if (error) {
+      newsContainer.innerHTML = '<p>Error loading news.</p>';
+      return;
+    }
+
+    if (data.length === 0) {
+      newsContainer.innerHTML = '<p>No news yet.</p>';
+      return;
+    }
+
+    data.forEach(news => {
+      const item = document.createElement('div');
+      item.className = 'newsletter-item';
+      item.innerHTML = `
+        <div style="flex:1;display:flex;flex-direction:column;gap:0.3rem;">
+          <span class="newsletter-date">${news.date}</span>
+          <h3 class="newsletter-headline">${news.title}</h3>
+          <div class="newsletter-summary-img-row">
+            <p class="newsletter-summary">${news.summary}</p>
+            ${news.image_url ? `<img class="newsletter-img" src="${news.image_url}" alt="${news.title}">` : ''}
+          </div>
+          ${news.url ? `<a class="nyt-link-btn" href="${news.url}" target="_blank" rel="noopener">Read more</a>` : ''}
+          ${news.author ? `<div class="newsletter-author">By ${news.author}</div>` : ''}
+        </div>
+      `;
+      newsContainer.appendChild(item);
+    });
+  }
+
+  loadNews();
   </script>
 </body>
 </html> 
