@@ -923,3 +923,158 @@ footer {
   margin-top: 0.7rem;
   font-family: 'Georgia', serif;
 } 
+body {
+  font-family: 'Georgia', 'Lora', serif;
+  color: #222;
+  background: #fff;
+  margin: 0;
+  padding: 0 1.5rem;
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Georgia', 'Lora', serif;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.main-article {
+  grid-column: 1 / 2;
+}
+.side-articles {
+  grid-column: 2 / 3;
+}
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.categories {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+.categories a {
+  color: #333;
+  text-decoration: none;
+  font-family: 'Georgia', 'Lora', serif;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+.categories a:hover {
+  background: #f5f5f5;
+}
+
+.newsletter-section, .recommended-tools-section {
+  margin-bottom: 2.5rem;
+}
+.newsletter-item {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+}
+.newsletter-date {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 0.2rem;
+  font-family: 'Georgia', 'Lora', serif;
+}
+.newsletter-headline {
+  font-size: 1.4rem;
+  font-family: 'Georgia', 'Lora', serif;
+  margin: 0.2rem 0 0.5rem 0;
+}
+.newsletter-summary-img-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+.newsletter-summary {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #444;
+}
+.newsletter-img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+.news-source-logo {
+  height: 20px;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+@media (max-width: 900px) {
+  .newsletter-summary-img-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .newsletter-img {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+} 
+/* --- NYT-style video embed --- */
+.blog-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0 2.5rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #faf9f7;
+  border: 1.5px solid #e5e5e5;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
+  padding: 1rem 0.5rem;
+}
+.blog-video iframe {
+  width: 100%;
+  max-width: 600px;
+  min-height: 320px;
+  aspect-ratio: 16/9;
+  border: none;
+  background: #000;
+}
+@media (max-width: 700px) {
+  .blog-video iframe {
+    min-height: 180px;
+    max-width: 100vw;
+  }
+}
+
+/* --- NYT-style title and date --- */
+.newsletter-date {
+  font-size: 1.05rem;
+  color: #b1a99a;
+  margin-bottom: 0.2rem;
+  font-family: 'Georgia', 'Lora', serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.newsletter-headline {
+  font-size: 2rem;
+  font-family: 'Georgia', 'Lora', serif;
+  margin: 0.2rem 0 1.1rem 0;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #222;
+  letter-spacing: 0.2px;
+} 

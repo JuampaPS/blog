@@ -35,34 +35,36 @@
     </div>
   </header>
   <hr class="header-separator">
-  <main>
-    <section class="newsletter-section">
-      <h1 class="newsletter-main-title">Latest News</h1>
-      <div id="newsletter-list"></div>
+  <main class="main-content">
+    <section class="newsletter-section main-article">
+      <h1 class="newsletter-main-title">AI Blog: Tips, Videos & Resources</h1>
+      <div id="blog-list"></div>
     </section>
-    <section class="recommended-tools-section">
-      <h2 class="recommended-tools-title">🎓 Recommended Tools for Students</h2>
-      <ul class="recommended-tools-list">
-        <li>
-          <a href="https://track.adtraction.com/t/cp12345?url=https://www.coursera.org" target="_blank">
-            📘 Learn AI & Design at Coursera – Start for Free
-          </a>
-        </li>
-        <li>
-          <a href="https://track.adtraction.com/t/cp67890?url=https://www.udemy.com" target="_blank">
-            🎨 Master UX/UI with Top-Rated Courses on Udemy
-          </a>
-        </li>
-        <li>
-          <a href="https://track.adtraction.com/t/cp54321?url=https://www.skillshare.com" target="_blank">
-            🧠 Design with AI – Get 1 Free Month on Skillshare
-          </a>
-        </li>
-      </ul>
-      <p class="recommended-tools-note">
-        These are affiliate links. If you sign up, we may earn a small commission – at no extra cost to you. Thanks for supporting student news.
-      </p>
-    </section>
+    <aside class="side-articles">
+      <section class="recommended-tools-section">
+        <h2 class="recommended-tools-title">🎓 Recommended Tools for Students</h2>
+        <ul class="recommended-tools-list">
+          <li>
+            <a href="https://track.adtraction.com/t/cp12345?url=https://www.coursera.org" target="_blank">
+              📘 Learn AI & Design at Coursera – Start for Free
+            </a>
+          </li>
+          <li>
+            <a href="https://track.adtraction.com/t/cp67890?url=https://www.udemy.com" target="_blank">
+              🎨 Master UX/UI with Top-Rated Courses on Udemy
+            </a>
+          </li>
+          <li>
+            <a href="https://track.adtraction.com/t/cp54321?url=https://www.skillshare.com" target="_blank">
+              🧠 Design with AI – Get 1 Free Month on Skillshare
+            </a>
+          </li>
+        </ul>
+        <p class="recommended-tools-note">
+          These are affiliate links. If you sign up, we may earn a small commission – at no extra cost to you. Thanks for supporting student news.
+        </p>
+      </section>
+    </aside>
   </main>
   <footer>
     <p>© 2025 AI News for My.se Students</p>
@@ -98,45 +100,71 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcnZwemx4YXJnbnJ5d2Z0cndlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0OTM2MTcsImV4cCI6MjA2ODA2OTYxN30.ZZkvLlGTqGFVPjPUErk7wgDV7Eo7SObA1roSPRFBOaY'; // tu anon key
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  async function loadNews() {
+  async function loadBlog() {
     const { data, error } = await supabase
       .from('news')
       .select('*')
       .order('date', { ascending: false });
 
-    const newsContainer = document.getElementById('newsletter-list');
-    newsContainer.innerHTML = '';
+    const blogContainer = document.getElementById('blog-list');
+    blogContainer.innerHTML = '';
 
     if (error) {
-      newsContainer.innerHTML = '<p>Error loading news.</p>';
+      blogContainer.innerHTML = '<p>Error loading blog entries.</p>';
       return;
     }
 
-    if (data.length === 0) {
-      newsContainer.innerHTML = '<p>No news yet.</p>';
+    if (!data || data.length === 0) {
+      blogContainer.innerHTML = '<p>No blog entries yet.</p>';
       return;
     }
 
-    data.forEach(news => {
+    data.forEach(entry => {
       const item = document.createElement('div');
       item.className = 'newsletter-item';
+      // Logo de fuente según entry.source (opcional)
+      let sourceLogo = '';
+      if(entry.source === 'NYTimes') sourceLogo = '<img src="public/logos/nytimes.svg" alt="NYTimes" class="news-source-logo">';
+      if(entry.source === 'The Verge') sourceLogo = '<img src="public/logos/verge.svg" alt="The Verge" class="news-source-logo">';
+      if(entry.source === 'El País') sourceLogo = '<img src="public/logos/elpais.svg" alt="El País" class="news-source-logo">';
+
+      let contentHtml = '';
+      if (entry.type === 'video' && entry.video_url) {
+        // Soporta YouTube y Vimeo
+        let embedUrl = entry.video_url;
+        if (embedUrl.includes('youtube.com/watch?v=')) {
+          embedUrl = embedUrl.replace('watch?v=', 'embed/');
+        }
+        contentHtml = `<div class="blog-video"><iframe width="100%" height="315" src="${embedUrl}" frameborder="0" allowfullscreen></iframe></div>`;
+      } else if (entry.type === 'tip') {
+        contentHtml = `<blockquote class="blog-tip">${entry.content || entry.summary}</blockquote>`;
+      } else if (entry.type === 'resource') {
+        contentHtml = `<a class="blog-resource" href="${entry.url}" target="_blank">${entry.content || entry.url}</a>`;
+      } else {
+        // article o por defecto
+        contentHtml = `<p>${entry.content || entry.summary || ''}</p>`;
+      }
+
+      // Función para validar si la URL es de imagen
+      function isValidImageUrl(url) {
+        return typeof url === 'string' && url.match(/^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/i);
+      }
+
       item.innerHTML = `
         <div style="flex:1;display:flex;flex-direction:column;gap:0.3rem;">
-          <span class="newsletter-date">${news.date}</span>
-          <h3 class="newsletter-headline">${news.title}</h3>
-          <div class="newsletter-summary-img-row">
-            <p class="newsletter-summary">${news.summary}</p>
-            ${news.image_url ? `<img class="newsletter-img" src="${news.image_url}" alt="${news.title}">` : ''}
-          </div>
-          ${news.url ? `<a class="nyt-link-btn" href="${news.url}" target="_blank" rel="noopener">Read more</a>` : ''}
-          ${news.author ? `<div class="newsletter-author">By ${news.author}</div>` : ''}
+          <span class="newsletter-date">${entry.date || ''} ${sourceLogo}</span>
+          <h3 class="newsletter-headline">${entry.title}</h3>
+          ${isValidImageUrl(entry.image_url) ? `<img class="newsletter-img" src="${entry.image_url}" alt="${entry.title}" loading="lazy">` : ''}
+          ${contentHtml}
+          ${entry.tags ? `<div class="blog-tags">${Array.isArray(entry.tags) ? entry.tags.map(tag => `<span>${tag}</span>`).join(' ') : entry.tags.split(',').map(tag => `<span>${tag.trim()}</span>`).join(' ')}</div>` : ''}
+          ${entry.author ? `<div class="newsletter-author">By ${entry.author}</div>` : ''}
         </div>
       `;
-      newsContainer.appendChild(item);
+      blogContainer.appendChild(item);
     });
   }
 
-  loadNews();
+  loadBlog();
   </script>
 </body>
 </html> 

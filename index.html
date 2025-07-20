@@ -27,7 +27,7 @@
   <meta name="twitter:image" content="https://news-ai-psi-weld.vercel.app/blog/public/banner.png">
 </head>
 <body>
-  <header>
+  <header class="sticky-header">
     <div class="header-container">
       <div class="header-left">
         <span class="search-icon">
@@ -47,73 +47,33 @@
         <a href="/about">About</a>
       </nav>
       <div class="header-actions">
-        <button class="subscribe-btn">Subscribe</button>
+        <button class="subscribe-btn cta">Subscribe to Newsletter</button>
         <button class="login-btn">Log in</button>
       </div>
     </div>
   </header>
   <hr class="header-separator">
-  <hr class="header-separator">
-  <main>
-    <section id="main-section">
-      <div class="newsletter-intro">
-        <h1 class="newsletter-main-title">Stay Ahead with AI News</h1>
-        <p class="newsletter-subtitle">Curated tech news and AI trends for My.se students. Fast. Reliable. High-tech.</p>
+  <main style="background:#faf9f7;">
+    <section id="main-section" style="max-width:1100px;margin:0 auto;">
+      <div class="newsletter-intro" style="margin-bottom:2.5rem;">
+        <h1 class="newsletter-main-title" style="font-size:2.7rem;line-height:1.1;margin-bottom:0.7rem;">Stay Ahead with AI News</h1>
+        <p class="newsletter-subtitle" style="font-size:1.3rem;max-width:600px;margin:0 auto 1.5rem auto;">Curated tech news and AI trends for My.se students. Fast. Reliable. High-tech.</p>
+        <button class="subscribe-btn cta" style="margin-top:1.2rem;font-size:1.2rem;padding:0.7rem 2.2rem;">Subscribe for Weekly Updates</button>
       </div>
-      <section class="hero-grid">
-        <section class="newsletter-daily">
-          <h2 class="newsletter-title">Today's Top 5 News</h2>
-          <ul class="newsletter-list">
-            <li class="newsletter-item">
-              <div>
-                <span class="newsletter-date">2025-07-15</span>
-                <h3 class="newsletter-headline">Anthropic’s Claude chatbot now integrates with Canva</h3>
-                <p class="newsletter-summary">Anthropic’s Claude chatbot can now create and edit Canva designs using natural language, streamlining design workflows.</p>
-                <a class="nyt-link-btn" href="https://www.theverge.com/news/706637/canva-anthropic-claude-ai-mcp-support" target="_blank" rel="noopener">Read more</a>
-              </div>
-            </li>
-            <li class="newsletter-item">
-              <div>
-                <span class="newsletter-date">2025-07-15</span>
-                <h3 class="newsletter-headline">Canva integrates with Anthropic’s Claude AI</h3>
-                <p class="newsletter-summary">On July 15, Anthropic’s AI assistant Claude launched integration with Canva to allow users to build and adjust designs through chat.</p>
-                <a class="nyt-link-btn" href="https://economictimes.indiatimes.com/tech/artificial-intelligence/canva-integrates-with-anthropics-claude-ai-enables-users-to-edit-and-create-designs-through-text-prompts/articleshow/122502625.cms" target="_blank" rel="noopener">Read more</a>
-              </div>
-            </li>
-            <li class="newsletter-item">
-              <div>
-                <span class="newsletter-date">2025-07-15</span>
-                <h3 class="newsletter-headline">You can now use Canva directly from Claude</h3>
-                <p class="newsletter-summary">The new integration lets users run Canva commands—like generating and editing visuals—directly in Chat Claude thanks to Canva’s MCP API.</p>
-                <a class="nyt-link-btn" href="https://www.lifewire.com/use-canva-directly-in-claude-11772064" target="_blank" rel="noopener">Read more</a>
-              </div>
-            </li>
-            <li class="newsletter-item">
-              <div>
-                <span class="newsletter-date">2025-07-15</span>
-                <h3 class="newsletter-headline">Microsoft employee uses terrible AI‑generated image to advertise for Xbox artists</h3>
-                <p class="newsletter-summary">A poorly generated AI image was used in an Xbox graphics job ad—sparking criticism over misuse of AI in graphic design roles.</p>
-                <a class="nyt-link-btn" href="https://www.techradar.com/computing/artificial-intelligence/microsoft-employee-uses-terrible-ai-generated-image-to-advertise-for-xbox-artists-just-weeks-after-massive-layoffs" target="_blank" rel="noopener">Read more</a>
-              </div>
-            </li>
-            <li class="newsletter-item">
-              <div>
-                <span class="newsletter-date">2025-07-17</span>
-                <h3 class="newsletter-headline">Freepik launches AI design tools in its suite</h3>
-                <p class="newsletter-summary">Freepik, with 150 million users, integrates generative models like Google Imagen and Ideogram in its AI Suite to support graphic creation.</p>
-                <a class="nyt-link-btn" href="https://en.wikipedia.org/wiki/Freepik" target="_blank" rel="noopener">Read more</a>
-              </div>
-            </li>
-          </ul>
+      <section class="hero-grid" style="margin-bottom:2.5rem;">
+        <section class="newsletter-daily" style="background:#fff;padding:2rem 1.5rem 2.5rem 1.5rem;border-radius:8px;box-shadow:0 2px 12px 0 rgba(0,0,0,0.04);">
+          <h2 class="newsletter-title" style="font-size:2rem;margin-bottom:1.2rem;">Weekly Top 5 News</h2>
+          <div id="home-news-list"></div>
         </section>
-        <div class="vertical-divider"></div>
-        <div class="hero-gap">
+        <div class="hero-gap" style="background:#fff;padding:2rem 1.5rem 2.5rem 1.5rem;border-radius:8px;box-shadow:0 2px 12px 0 rgba(0,0,0,0.04);margin-bottom:2.5rem;display:flex;flex-direction:column;gap:2.5rem;">
           <div class="gap-news-item">
             <span class="gap-news-date">2025-07-18</span>
             <h4 class="gap-news-headline">NYTT PROGRAM HÖSTEN 2025<br>PROGRAMMERARE IPHONE OCH ANDROID</h4>
-            <div class="gap-news-content">
-              <p class="gap-news-summary">Läs mer och skicka in din ansökan nu.<br>Några få reservplatser finns!</p>
-              <img class="gap-news-img" src="blog/public/gallery/ai2.webp" alt="Programmerare iPhone och Android">
+            <div class="gap-news-content" style="display:flex;flex-direction:row;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
+              <div style="flex:2;min-width:180px;">
+                <p class="gap-news-summary">Läs mer och skicka in din ansökan nu.<br>Några få reservplatser finns!</p>
+              </div>
+              <img class="gap-news-img" src="blog/public/gallery/ai2.webp" alt="Programmerare iPhone och Android" style="flex:1;width:100%;max-width:320px;object-fit:cover;border-radius:6px;box-shadow:0 2px 8px 0 rgba(0,0,0,0.04);margin-top:0;">
             </div>
             <a class="nyt-link-btn" href="https://www.my.se" target="_blank" rel="noopener">Read more</a>
           </div>
@@ -121,9 +81,11 @@
           <div class="gap-news-item">
             <span class="gap-news-date"></span>
             <h4 class="gap-news-headline">About this project</h4>
-            <div class="gap-news-content">
-              <p class="gap-news-summary">AI News for My.se Students is a web platform designed to provide Malmö Yrkeshögskola (My.se) students with fast, modern access to the latest news and trends in artificial intelligence and technology.</p>
-              <img class="gap-news-img" src="blog/public/gallery/ai3.jpeg" alt="About AI News Project">
+            <div class="gap-news-content" style="display:flex;flex-direction:row;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
+              <div style="flex:2;min-width:180px;">
+                <p class="gap-news-summary">AI News for My.se Students is a web platform designed to provide Malmö Yrkeshögskola (My.se) students with fast, modern access to the latest news and trends in artificial intelligence and technology.</p>
+              </div>
+              <img class="gap-news-img" src="blog/public/gallery/ai3.jpeg" alt="About AI News Project" style="flex:1;width:100%;max-width:320px;object-fit:cover;border-radius:6px;box-shadow:0 2px 8px 0 rgba(0,0,0,0.04);margin-top:0;">
             </div>
             <a class="nyt-link-btn" href="about.html">Read more</a>
           </div>
@@ -135,9 +97,8 @@
             <a class="nyt-link-btn" href="ai-tools.html">Read more</a>
           </div>
         </div>
-        <div class="vertical-divider right"></div>
-        <div class="hero-side">
-          <h2 class="gallery-title">Today's Gallery</h2>
+        <div class="hero-side" style="background:#fff;padding:2rem 1.5rem 2.5rem 1.5rem;border-radius:8px;box-shadow:0 2px 12px 0 rgba(0,0,0,0.04);">
+          <h2 class="gallery-title" style="font-size:1.5rem;margin-bottom:1.2rem;">Today's Gallery</h2>
           <div class="gallery-grid" id="todays-gallery">
             <!-- Las imágenes random de Supabase aparecerán aquí, cada una en su .gallery-item -->
           </div>
@@ -203,12 +164,50 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
   <script>
-  const SUPABASE_URL = 'https://ecrvpzlxargnrywftrwe.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcnZwemx4YXJnbnJ5d2Z0cndlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0OTM2MTcsImV4cCI6MjA2ODA2OTYxN30.ZZkvLlGTqGFVPjPUErk7wgDV7Eo7SObA1roSPRFBOaY';
-  const BUCKET = 'gallery-ai';
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  // Declaración global única para Supabase
+  var SUPABASE_URL = 'https://ecrvpzlxargnrywftrwe.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcnZwemx4YXJnbnJ5d2Z0cndlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0OTM2MTcsImV4cCI6MjA2ODA2OTYxN30.ZZkvLlGTqGFVPjPUErk7wgDV7Eo7SObA1roSPRFBOaY';
+  var supabase = window.supabase && window.supabase.createClient ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
+  async function loadHomeNews() {
+    if (!supabase) return;
+    const { data, error } = await supabase
+      .from('news')
+      .select('*')
+      .order('date', { ascending: false });
+    const newsContainer = document.getElementById('home-news-list');
+    newsContainer.innerHTML = '';
+    if (error) {
+      newsContainer.innerHTML = '<p>Error loading news.</p>';
+      return;
+    }
+    if (!data || data.length === 0) {
+      newsContainer.innerHTML = '<p>No news yet.</p>';
+      return;
+    }
+    const top5 = data.slice(0, 5);
+    top5.forEach(news => {
+      const item = document.createElement('div');
+      item.className = 'newsletter-item';
+      item.style.marginBottom = '1.7rem';
+      item.innerHTML = `
+        <div style=\"display:flex;flex-direction:column;gap:0.5rem;\">
+          <span class=\"newsletter-date\">${news.date || ''}</span>
+          <h3 class=\"newsletter-headline\">${news.title}</h3>
+          <p class=\"newsletter-summary\">${news.summary || ''}</p>
+          ${news.url ? `<a class='nyt-link-btn' href='${news.url}' target='_blank' rel='noopener'>Read more</a>` : ''}
+        </div>
+      `;
+      newsContainer.appendChild(item);
+    });
+  }
+  loadHomeNews();
+  </script>
+  <script>
+  // Cargar imágenes aleatorias de Supabase en el home
+  const BUCKET = 'gallery-ai';
   async function loadRandomGalleryImages() {
+    if (!supabase) return;
     const { data, error } = await supabase.storage.from(BUCKET).list('', { limit: 100 });
     const gallery = document.getElementById('todays-gallery');
     gallery.innerHTML = '';
@@ -237,5 +236,31 @@
   }
   loadRandomGalleryImages();
   </script>
+  <style>
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+    }
+    .cta {
+      background: #111 !important;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta:hover {
+      background: #333 !important;
+      color: #fff !important;
+    }
+    @media (max-width: 900px) {
+      .newsletter-main-title { font-size: 2rem !important; }
+      .hero-grid, .hero-gap, .newsletter-daily, .hero-side { padding: 1rem !important; }
+    }
+  </style>
 </body>
 </html> 

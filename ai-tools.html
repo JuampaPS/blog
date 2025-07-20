@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header class="sticky-header">
     <div class="header-container">
       <div class="header-left">
         <span class="search-icon">
@@ -29,15 +29,14 @@
         <a href="/about">About</a>
       </nav>
       <div class="header-actions">
-        <button class="subscribe-btn">Subscribe</button>
+        <button class="subscribe-btn cta">Subscribe to Newsletter</button>
         <button class="login-btn">Log in</button>
       </div>
     </div>
   </header>
   <hr class="header-separator">
-  <hr class="header-separator">
-  <main>
-    <section class="ai-tools-section">
+  <main style="background:#faf9f7;">
+    <section class="ai-tools-section" style="max-width:1100px;margin:0 auto;background:#fff;padding:2.5rem 1.5rem 2.5rem 1.5rem;border-radius:8px;box-shadow:0 2px 12px 0 rgba(0,0,0,0.04);margin-bottom:2.5rem;">
       <h1>Best AI Tools for Design & Content Creation</h1>
       <table class="ai-tools-table">
         <thead>
@@ -176,5 +175,39 @@
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateEl.textContent = now.toLocaleDateString('en-US', options);
   </script>
+  <style>
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+    }
+    .cta {
+      background: #111 !important;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta:hover {
+      background: #333 !important;
+      color: #fff !important;
+    }
+    .ai-tools-section h1 {
+      font-family: 'Georgia', 'Lora', serif;
+      font-size: 2.2rem;
+      color: #222;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 900px) {
+      .ai-tools-section { padding: 1rem !important; }
+      .ai-tools-section h1 { font-size: 1.3rem !important; }
+    }
+  </style>
 </body>
 </html> 

@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
 </head>
 <body>
-  <header>
+  <header class="sticky-header">
     <div class="header-container">
       <div class="header-left">
         <span class="search-icon">
@@ -30,18 +30,18 @@
         <a href="/about">About</a>
       </nav>
       <div class="header-actions">
-        <button class="subscribe-btn">Subscribe</button>
+        <button class="subscribe-btn cta">Subscribe to Newsletter</button>
         <button class="login-btn">Log in</button>
       </div>
     </div>
   </header>
   <hr class="header-separator">
-  <main>
-    <section class="gallery-section">
-      <h2 class="gallery-title">Gallery</h2>
+  <main style="background:#faf9f7;">
+    <section class="gallery-section" style="max-width:1100px;margin:0 auto;background:#fff;padding:2.5rem 1.5rem 2.5rem 1.5rem;border-radius:8px;box-shadow:0 2px 12px 0 rgba(0,0,0,0.04);margin-bottom:2.5rem;">
+      <h2 class="gallery-title" style="font-size:2.2rem;margin-bottom:1.2rem;">Gallery</h2>
       <input type="file" id="gallery-upload" accept="image/*" multiple style="display:none;">
-      <button onclick="document.getElementById('gallery-upload').click()" class="gallery-upload-btn">Upload your Art</button>
-      <div class="gallery-grid" id="dynamic-gallery">
+      <button onclick="document.getElementById('gallery-upload').click()" class="gallery-upload-btn cta" style="margin-bottom:1.5rem;">Upload your Art</button>
+      <div class="gallery-grid" id="dynamic-gallery" style="margin-top:2rem;">
         <!-- Las imágenes de Supabase aparecerán aquí -->
       </div>
     </section>
@@ -152,5 +152,46 @@
       loadGallery();
     });
   </script>
+  <style>
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+    }
+    .cta {
+      background: #111 !important;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta:hover {
+      background: #333 !important;
+      color: #fff !important;
+    }
+    .gallery-title {
+      font-family: 'Georgia', 'Lora', serif;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: #222;
+    }
+    .gallery-grid img {
+      width: 100%;
+      max-width: 320px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+      margin: 0.7rem 0.7rem 1.5rem 0;
+      background: #f5f5f5;
+    }
+    @media (max-width: 900px) {
+      .gallery-section { padding: 1rem !important; }
+      .gallery-title { font-size: 1.3rem !important; }
+    }
+  </style>
 </body>
 </html> 
